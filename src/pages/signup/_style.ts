@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
+import Button from '../../components/Button';
 
 const animationLoading = keyframes`
   	0% {
@@ -27,8 +28,6 @@ export const Content = styled.div`
 
 export const Informations = styled.section`
   display: flex;
-  /* justify-content: center; */
-  /* margin: 160px 0 0 100px; */
   padding-top: 3rem;
   margin: 2rem;
   flex-direction: column;
@@ -48,10 +47,6 @@ export const Informations = styled.section`
     align-items: center;
     flex-direction: column;
     margin: 0;
-
-    button {
-      margin: 1.25rem 2rem 0 0;
-    }
   }
 
   h1 {
@@ -116,3 +111,5 @@ export const PolygonTwoImageHome = styled.div`
     display: flex;
   }
 `;
+// Usando props de outros components referenciando.
+export const ButtonSubmit = styled(Button)``;

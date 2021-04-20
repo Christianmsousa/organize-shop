@@ -1,20 +1,28 @@
-import React, { useRef } from 'react';
-import { Formik, Field } from 'formik';
-import { Container } from './style';
+import React, { InputHTMLAttributes, useCallback, useRef } from 'react';
+import { Formik, useField } from 'formik';
+import * as S from './style';
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: string;
-  placeholder: string;
-  type: string;
-  name: string;
 }
 
-export const Input = ({ icon, placeholder, type, name }: InputProps) => {
-  const inputRef = useRef<any>(null);
+export const Input = ({ icon, name, ...rest }: InputProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [field, meta] = useField(name);
+
+  const handleInputFocus = useCallback(() => inputRef.current?.focus(), []);
+
   return (
-    <Container>
-      {icon && <img src={icon} onClick={() => inputRef.current.focus()} />}
-      <Field name={name} ref={inputRef} type={type} placeholder={placeholder} />
-    </Container>
+    <>
+      <S.Container>
+        {icon && (
+          <S.ButtonIcon type="button" onClick={handleInputFocus}>
+            <img src={icon} />
+          </S.ButtonIcon>
+        )}
+        <input ref={inputRef} {...field} {...rest} />
+      </S.Container>
+      {meta.error && meta.touched ? <div>{meta.error}</div> : null}
+    </>
   );
 };

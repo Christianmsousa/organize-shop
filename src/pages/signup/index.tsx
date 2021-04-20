@@ -1,13 +1,6 @@
-import {
-  Container,
-  Content,
-  Informations,
-  StaticImageHome,
-  PolygonOneImageHome,
-  PolygonTwoImageHome,
-} from './_style';
+import { SignUpSchema } from '../../schema/SignUpSchema';
+import * as S from './_style';
 import { Input } from '../../components/Input';
-import Button from '../../components/Button';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -32,17 +25,18 @@ const fadeInUp = {
 const SignUp = () => {
   return (
     <motion.div exit={{ opacity: 0 }} initial="initial" animate="animate">
-      <Container>
+      <S.Container>
         <main>
-          <Content>
+          <S.Content>
             <section>
-              <Informations>
+              <S.Informations>
                 <motion.div transition={{ delay: 0.4 }}>
                   <motion.h1 variants={fadeInUp}>ORGANIZE</motion.h1>
                   <motion.h2 variants={fadeInUp}>Cadastre-se</motion.h2>
                   <motion.div variants={fadeInUp}>
                     <Formik
                       initialValues={{ name: '', email: '', password: '' }}
+                      validationSchema={SignUpSchema}
                       onSubmit={(values, { setSubmitting }) => {
                         console.log(values);
                       }}
@@ -67,16 +61,16 @@ const SignUp = () => {
                             icon="/assets/IconSenha.svg"
                             placeholder="Senha"
                           />
-                          <Button title="Cadastrar" />
+                          <S.ButtonSubmit title="Cadastrar" />
                         </Form>
                       )}
                     </Formik>
                   </motion.div>
                 </motion.div>
-              </Informations>
+              </S.Informations>
             </section>
 
-            <StaticImageHome>
+            <S.StaticImageHome>
               <motion.img
                 initial={{ x: 60, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -86,10 +80,10 @@ const SignUp = () => {
                 width={540}
                 height={435}
               />
-            </StaticImageHome>
-          </Content>
+            </S.StaticImageHome>
+          </S.Content>
 
-          <PolygonOneImageHome>
+          <S.PolygonOneImageHome>
             <motion.img
               initial={{ x: -60, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -99,9 +93,9 @@ const SignUp = () => {
               width={140}
               height={200}
             />
-          </PolygonOneImageHome>
+          </S.PolygonOneImageHome>
 
-          <PolygonTwoImageHome>
+          <S.PolygonTwoImageHome>
             <motion.img
               initial={{ x: 60, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -111,9 +105,9 @@ const SignUp = () => {
               width={140}
               height={200}
             />
-          </PolygonTwoImageHome>
+          </S.PolygonTwoImageHome>
         </main>
-      </Container>
+      </S.Container>
     </motion.div>
   );
 };

@@ -19,3 +19,10 @@ export const Container = styled.div`
     border: 0;
   }
 `;
+
+export const ButtonIcon = styled.button`
+  border: none;
+  outline-style: none;
+  background: transparent;
+  margin: 0;
+`;
